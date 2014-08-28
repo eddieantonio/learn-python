@@ -9,19 +9,19 @@
   <body>
     <textarea id="source">
 
-title: Learning Code with Python
-author: Eddie Antonio Santos
-class: middle, center
+name: inverse
+layout: true
+class: center, middle, inverse
 
-# {{ title }}
+---
 
-.attribution[
+# Learning Code with Python
 
-Based on [Ladies Learning Code Python][LLC].
+.footnote.attribution[
+
+Largely ripped off from [Ladies Learning Code Python][LLC].
 
 [LLC]: https://github.com/ladieslearningcode/Python
-
-]
 
 .license-text[
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img
@@ -31,14 +31,16 @@ is licensed under a <a rel="license"
   href="http://creativecommons.org/licenses/by/4.0/">Creative Commons
   Attribution 4.0 International License</a>.
 ]
+]
 
+
+
 ---
-
-class: lesson-start
 
 # Lesson 0: Start your text editors
 
 ---
+layout: false
 
 - Download and install [Python 2.7][python]
 - Get a text editor
@@ -75,8 +77,8 @@ are Windows. For Linux... yeesh. But we'll get to that as it occurs.
 --
 
 
-(The `$` is a shorthand for your **prompt**. This means that the *shell*
-(command line) is ready to interpret a command. **Do not type this out!*)
+The `$` is a shorthand for your **prompt**. This means that the *shell*
+(command line) is ready to interpret a command. **Do not type this out!**
 
 ```sh
 $ cd Documents/Python
@@ -100,10 +102,9 @@ Type "help", "copyright", "credits" or "license" for more information.
 Change into the directory where we're going to be doing work stuff!
 
 
-
+
 ---
-
-class: lesson-start
+template: inverse
 
 # Lesson 1: Greetings
 
@@ -145,7 +146,10 @@ Then we're going to make tiny changes to it, as an exercise:
 WASN'T THAT FUN?!?!?!?
 ]
 
+
+
 ---
+template: inverse
 
 class: lesson-start
 
@@ -165,11 +169,12 @@ class: lesson-start
 - Comments
 
 
-
+
 ---
+template: inverse
 
 # Lesson 3: Math
-## AKA, Dillydaddling in the Python interpreter
+## AKA, dilly daddling in the Python interpreter
 
 ---
 
@@ -186,6 +191,17 @@ Do some math!
 
 ---
 
+# Operators
+
+Remember the TI-83? It's a lot like that.
+
+
+- `+`, `-`, `*`, `/` do what you expect
+- `**` does exponents. (`^` does something completely different).
+- `%` (called *modulo*) gives you the remainder of dividing two numbers.
+
+---
+
 - Does Python follow order of operations?
 - What happens when you type `1/3`?
 --
@@ -193,63 +209,1033 @@ Do some math!
 - How about `1.0/3.0`?
 
 
-
-
+
 ---
+template: inverse
 
 # Lesson 4: Types
 
 ---
 
+Python can do different things with different values. But before it knows how
+to do something (say, add two values), it needs to know what kind of values
+they are, and what are valid operations between them. These are what types
+are. A category for each kind of value.  There are two different kinds of
+numbers:
 
+- `int` — integers with as many digits as your memory can handle
+  ```python
+>>> 10 ** 100
+10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000L
+```
+
+- `float` — approximation of real numbers with fixed number of digits
+  after the (binary!) point.
+  ```python
+>>> 10.0 ** 100
+1e+100
+```
+
+--
+
+**THEY ARE NOT THE SAME**.
 
 ---
+
+- This is an `int`:
+
+```python
+42
+```
+
+- This is a `float`.
+
+```python
+42.0
+```
+
+
+--
+
+- to convert an int to a float, type `float(the_int_you_want_to_convert)`.
+--
+
+
+```python
+>>> float(42)
+42.0
+```
+
+???
+
+This may seem redundant here, but it becomes necessary later.
+
+--
+
+- Alternatively, just write at least one float in the numbers you want to
+operate on.
+
+
+```python
+>>> 1/3.0
+0.3333333333333333
+```
+
+--
+- You may get unexpected results due to the nature of floats vs. ints:
+
+```python
+>>> (  30000000000000000000000000000000000000000000000000001
+...  - 30000000000000000000000000000000000000000000000000000.0)
+0.0
+>>> (  30000000000000000000000000000000000000000000000000001
+...  - 30000000000000000000000000000000000000000000000000000)
+1L
+```
+
+---
+
+**But types don't stop at just numbers.**
+
+
+
+---
+template: inverse
 
 # Lesson 5: Strings
 
 ---
 
-# Lesson 6: Using Functions
+- We've already seen an example of strings.
+--
 
-- abs
-- modules
-- "." means belongs to or "'s"
-- string methods
+- Python calls 'em `str` (because who likes vowels anyway?).
+--
+
+- We can do more with strings than just print them on the screen.
 
 ---
+
+There are two different ways of writing strings: with single quotes and with
+double quotes.
+
+--
+
+```python
+>>> "Buenos" + " dias"
+'Buenos dias'
+>>> 'or I can use single quotes'
+'or I can use single quotes'
+>>> 'but I cannot use both"
+SyntaxError: EOL while scanning string literal
+
+```
+
+--
+
+Both notations mean the **same thing**.
+
+
+---
+
+# But what if we combine numbers and strings?
+
+```python
+>>> "I'll see you at " + 2
+Traceback (most recent call last):
+File "<stdin>", line 1, in <module> TypeError: cannot concatenate 'str' and
+'int' objects
+```
+
+--
+
+- `“I’ll see you at “` is a String
+- `2` is an Integer
+
+--
+- Python gets upset when we mix types (like in 1950s America).
+
+
+---
+
+- Protip: use `type(value)` if you're unsure of what the type of a value is.
+
+--
+
+```python
+>>> type("Ladies Learning Code")
+<type 'str'>
+>>> type(6)
+<type 'int'>
+>>>
+type(6.1)
+<type 'float'>
+>>> type(6.0)
+<type 'float'>
+```
+
+
+---
+
+# We can change types.
+
+- `int()`, `float()`, and `str()` all try to convert whatever you give them to
+  their respective type.
+
+--
+
+```python
+>>> "I'll see you at " + str(2)
+"I'll see you at 2"
+>>> 1 + int("2")
+3
+```
+
+---
+
+# It's not magic though
+
+```python
+>>> 1 + int("two")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: invalid literal for int() with base 10: 'two'
+```
+
+
+
+---
+template: inverse
+
+# Lesson 6: Using Functions
+
+---
+
+- Sometimes we want to do more than basic arithmetic.
+--
+
+- Functions are like sleeping code dragons, waiting to be awakened.
+--
+
+- You've already used some functions: `int()`, `float()`, `str()`,
+  `type()`.sup[\*].
+--
+ `print` is not a function (in Python 2, at least)...
+--
+
+- **Always use parentheses `()` to awaken the code dragons.**
+--
+
+- The things you give functions are called *arguments*.
+--
+ Some functions take a small, fixed amount of them; some take an unlimited
+amount; some take none at all.
+--
+
+- Most of the functions we will look at will take one or two arguments, or no
+  arguments at all.
+
+???
+
+\* Technically, those are callables and above that -- class constructors.
+
+
+---
+
+# Built in functions
+
+
+- There are several useful [built-in
+  functions](https://docs.python.org/2/library/functions.html).
+
+--
+
+- `abs(num)` gives the absolute value of `num`
+```python
+>>> abs(-6)
+6
+```
+--
+
+- `help(value)` gives you interactive help for any 'ol thing you wish to ask
+  for.
+--
+ To ask for help for a function, **omit the parentheses!**
+
+```python
+>>> help(abs())
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: abs() takes exactly one argument (0 given)
+```
+--
+
+- A lot of the other built-ins are a bit too esoteric for an intro to programming
+  though... :/
+
+
+---
+
+# Modules
+
+- Modules are ready made collections of code.
+- I use the term module synonymously with "[code] library".
+- Python is known for being a "batteries included" language
+  with a veritable [crap tonne of modules][mods]. There's even [a website
+  devoted][pymotw] to a tour of the "standard library".
+
+[mods]: https://docs.python.org/2/library/
+[pymotw]: http://pymotw.com/2/contents.html
+--
+
+- Use a module with the `import` statement:
+
+```python
+>>> import math
+```
+--
+
+- To use functions that belong to the module, **use the dot (`.`)**.
+- The `.` is like 's in English. So `math.sqrt` means "`math`'s `sqrt`
+  function".
+--
+
+```python
+>>> math.sqrt(2)
+1.4142135623730951
+```
+
+---
+
+# Some useful modules
+
+- `math` — contains `sqrt()`, `sin()`, `cos()`, `tan()`, `atan2()`, `log()`,
+  plus constants like `pi` and `e`:
+
+```python
+>>> import math
+>>> 2 * math.pi
+6.283185307179586
+>>> math.atan2(10, 1)
+1.4711276743037347
+```
+--
+
+- `random` — generates *psuedorandom* numbers. `random()`, `randint()`,
+  `shuffle()`, and `choice()` are pretty dang useful.
+
+```python
+>>> import random
+>>> random.random()
+0.14501424363328552
+>>> random.randint(1, 10)
+5
+```
+--
+
+- `os` and `sys` are some other of the most imported modules in Python.
+
+---
+
+# Methods
+
+- Sometimes, functions belong to values.
+- These functions are called **methods**.
+--
+ They typically act on the value they belong to.
+--
+
+- Strings have [a bunch of useful methods][str-methods]: `.upper()`,
+  `.lower()`, `.title()`, `.capitalize()`, `.replace()`.
+
+```python
+>>> "edmonton".capitalize()
+'Edmonton'
+>>> "George Washington".replace("Washington", "Clinton")
+'George Clinton'
+>>> "moar python".upper()
+'MOAR PYTHON!!!'
+```
+
+[str-methods]: https://docs.python.org/2/library/stdtypes.html#string-methods
+--
+
+- Try out some string methods! Use `help(str)` to find even more of them!
+
+---
+
+# String Format
+
+- One really useful string method is `.format()`.
+--
+
+- The string given is like a template; `{}` signifies a placeholder where a
+  value is supposed to go.
+--
+
+- Makes inserting a bunch of numbers into a string a whole lot less awkward.
+
+```python
+>>> "The answer of " + str(2) + " + " + str(2) + " is " + str(2 + 2)
+'The answer of 2 + 2 is 4'
+>>> "The answer of {} + {} is {}".format(2, 2, 2 + 2)
+'The answer of 2 + 2 is 4'
+```
+
+
+
+---
+template: inverse
 
 # Lesson 7: Variables
 
-- Names
--Binding
--"="
+---
+
+# Variables
+
+- Programmers like to keep things **DRY**.
+--
+ Don't
+--
+ Repeat
+--
+ Yourself.
+--
+
+- To do this, we use *names* or *variables*.
+
+???
+
+I use the terms *variables* and *names* more or less synonymously. In Python,
+they're called names because that's just what they are -- names for values.
+Though the term in computer science in general is just "variable".
 
 ---
 
-# Lesson 8: Conditionals
+# Names
 
--booleans
--comparisons
--"=="
--if/else/elif
+- We give names to values by using `=`:
+
+```python
+>>> password = "SuperSecure"
+>>> password
+'SuperSecure'
+>>> num1 = 4
+>>> num1
+4
+>>> num2 = 1234.5 >>> num2
+1234.5
+```
+--
+
+- `=` always means: calculate whatever is on the **right hand side** down to a
+  single value; give that value the name on the **left hand side**.
+--
+
+- Typing a name simply recalls the value associated with it.
+
+???
+
+This is where Python stops resembling math. `=` does not mean what it means in
+math. At all.
+--
+- Names can't begin with a number or have a space in them.  Use an underscore
+  when you want to use a space.
+
 
 ---
 
-# Lesson 9: While loops
+# Assignment, Rebinding, &c.
+
+- If you slap the same name onto a new value, the old value will be **entirely
+  forgotten**.
+- This is cool though, because that's actually really useful. We'll see why
+  later.
 
 ---
 
-# Lesson 10: Lists
+# Let’s throw a party
+
+```python
+>>> party_budget = 1000
+>>> venture_capitalist_investment = 100000
+>>> party_budget + venture_capitalist_investment
+101000
+```
+
+What is your party budget now?
 
 ---
 
-# Lesson 11: Writing functions
+# New Budget
+
+```pythog
+>>> party_budget
+1000
+```
+
+Aw geez. It's still the same!
+--
+ We have to tell the `party_budget` it has a new value:
+
+
+```python
+>>> party_budget = party_budget + venture_capitalist_investment
+>>> party_budget
+101000
+```
 
 ---
 
-# Lesson 12: Dictionaries
+# The guestlist
+
+```python
+>>> guestlist = "Peter June Shreek"
+>>> guestlist_copy = guestlist
+>>> guestlist_copy
+'Peter June Shreek'
+>>> guestlist = guestlist + " Roberto"
+>>> guestlist
+'Peter June Shreek Roberto'
+>>> guestlist_copy
+'Peter June Shreek'
+```
 
 ---
+
+# Anything you can do with any ol' value, you can do to a name
+
+```python
+>>> startup = "my elephant brain"
+>>> startup.title()
+'My Elephant Brain'
+>>> revenue = -429376
+>>> abs(revenue)
+429376
+>>> revenue + 1000000
+570624
+```
+
+---
+
+# But did the variable change?
+
+```python
+>>> startup
+'my elephant brain'
+```
+
+The string methods **return a new value**, leaving the original intact.
+
+---
+
+# String formatting, revisited
+
+Now string formats make sense:
+
+```python
+>>> utensil = "spoon"
+>>> "My {} is too big".format(utensil)
+'My spoon is too big'
+>>> "The {0} came before the {1}".format('chicken', 'egg')
+'The chicken came before the egg'
+>>> "The {1} came before the {0}".format('chicken', 'egg')
+'The egg came before the chicken'
+>>> template = "The Jaguar F-Type has {}hp"
+>>> template.format(488)
+'The Jaguar F-Type has 488hp'
+```
+
+???
+
+Now would be an apt time to exercise using functions and methods on variables.
+
+
+---
+
+# Recap
+
+- Names save us from repeating ourselves.
+- Anything you can do to a value you can do to a name — a name just fetches
+  the value, after all.
+- Variables don't change until you tell them to.
+- Use `str.format()`.
+
+
+
+---
+template: inverse
+
+# Lesson 8: Programs
+
+---
+
+# Honest-to-goodness programs
+
+- We're actually going to use our text editors now.
+- Create a new file called `party.py`.
+- Add the following code:
+
+```python
+party_budget = 1500
+party_budget
+```
+
+---
+
+# Run it
+
+```sh
+ $ cd the-folder-with-stuff-in-it
+ $ python party.py
+```
+
+--
+
+- What happened? Where's my party budget?
+
+---
+
+# In scripts, you have to tell Python to print stuff.
+
+--
+```python
+party_budget = 1500
+print party_budget
+```
+
+---
+
+# Comments
+
+- Anything after a `#` in a line is ignored.
+
+```python
+# This is a comment
+print 'Hello World' # so is this
+#print("this won't be printed")
+```
+
+--
+- Allows you to write sweet love letters to your maintenance programmer
+
+--
+- And explain what was going on in your head when you were writing the dang
+  code.
+--
+ Which is greatly appreciated by anybody reading your code; more so than my
+ love letters, in my experience.
+
+---
+
+# Asking for input
+
+- Another built-in function: `raw_input()` prompts the user to type a line.
+--
+
+- **It always returns a `str`!**
+
+```python
+# raw input prompts the user
+raw_input("Please enter your name:\n")
+# store the result in a variable
+my_name = raw_input("Please enter your name:\n")
+# store the result in a variable
+my_age = int(raw_input("How old are you?\n"))
+```
+
+---
+
+# A ticket app
+
+- We’re going to write a ticket app for Peter’s Python Prognostications
+- Here’s how it’s work
+  1. We start with 8 tickets
+  2. We ask the user how many they want
+  3. We print out that number
+  4. We show the user how many tickets are left
+
+
+
+---
+template: inverse
+
+# Lesson 9: Conditionals
+
+---
+
+# Control flow
+
+- Most programs don’t run line by line from start to end
+- They jump around according to rules
+- One way to specify those rules is to use conditions
+
+---
+
+# Boolean logic
+
+- All about yes or no questions
+- We frequently want to test if two values are equal
+- For equality we use the **double equal** sign
+  - `1 == 1`
+- We can test if two things aren’t equal with `!=`
+  - `1 != 2`
+- There are also many of the math operators we know
+  - Greater than: `>`
+  - Greater than or equal to: `>=`
+  - Less than: `<`
+  - Less than or equal to: `<=`
+
+---
+
+# Exercise
+
+- In the Python shell use all the operators in the previous slide.
+
+---
+
+# Boolean type
+
+- A new type! Hoorah!
+- Only two values. Ever. `True` or `False`.
+- Useful for making a decision.
+
+---
+
+# `if` statement
+
+```python
+if 1 == 1:
+    print "I am a prickly pear."
+```
+
+---
+
+# Indentation
+
+- Stuff you only want to be done in the `if` is indented.
+
+```python
+# so beautiful
+if True:
+    print "wir sind die Roboter"
+# NOPE!
+if True:
+print "ya tvoy robotnik"
+```
+
+---
+
+# `else` statement
+
+```python
+if 0:
+    print "0 is always false"
+else:
+    print "So the else clause is executed"
+```
+
+---
+
+# `elif` statement
+
+```python
+today = "Saturday"
+
+if today == "Friday":
+    print "Everybody’s working for the weekend!"
+elif today ==  "Saturday":
+    print "S-A-T-U-R-D-A-Y Night!"
+elif today == "Sunday":
+    print  "Pancakes."
+else:
+    print "Early to bed and early to rise."
+```
+
+---
+
+# Exercises
+
+- Stop the user from buying tickets if they ask for more than are available
+- Write a program that asks you what your favourite colour is and tells you
+  something else that is the same colour.
+
+        What is your favourite colour? Green
+        I like turtles
+
+  - `raw_input()` and `.lower()` might be useful to you.
+
+
+
+---
+template: inverse
+
+# Lesson 10: While loops
+
+---
+
+# Getting loopy
+
+- So far our code has run from top to bottom
+- Programs usually need to do something over and over again
+- Computers are literally made to do menial, repetitive tasks
+
+---
+
+# `while` loop
+
+```python
+# "while" something is true
+# perform an action
+while True:
+    print 'Are we there yet?'
+# use Ctrl + c to cancel the program
+```
+
+---
+
+# We need a way to stop the loop
+
+```python
+# code within the loop should invalidate the condition
+loop = True
+while loop:
+    print 'Are we there yet?'
+    loop = False
+print 'Done the loop'
+```
+
+---
+
+# Or we could ask the user for input
+
+```python
+loop = True
+while loop:
+    answer = raw_input('Are we there yet? ')
+    loop = answer == 'no'
+print 'Done the loop'
+```
+
+---
+
+# break dancing
+
+```python
+# or we can use the break keyword
+loop = True
+while loop:
+    print 'Are we there yet?‘
+    break
+print 'Done the loop'
+```
+
+???
+
+`break` unconditionally stops the loop. It's typically used inside an `if`
+statement.
+
+---
+
+# To run a certain number of times we test a variable and increment within the loop
+
+```python
+x=1
+while x < 10:
+    print x
+    x += 1
+```
+
+---
+
+# Exercise: Print from 10 to 1
+
+--
+```python
+x = 10
+while x > 0:
+    print x
+    x -= 1
+```
+
+---
+
+# Exercise
+
+- We’re going to write a game for the computer
+- The computer will pick a number and we have to guess it
+
+```python
+import random
+x = random.randint(1, 10)
+```
+
+- The user should know if they are too high or too low
+- We know how to ask for input
+- We know how to compare guesses
+- We want to give the user multiple chances (maybe 3?)
+
+
+
+---
+template: inverse
+
+# Lesson 11: Lists
+
+---
+
+# Lists
+
+- Lists are lists
+- That was useless
+- But seriously, they’re just an **ordered collection of values**.
+- Lists can hold strings, integers, floats, booleans, and anything else you
+can create
+
+---
+
+# Creating lists
+
+```python
+>>> mylist = [1,2,3,4]
+>>> mylist
+[1, 2, 3, 4]
+>>> companies = ['My Elephant Brain', 're:3D', 'Hacker You']
+>>> companies
+['My Elephant Brain', 're:3D', 'Hacker You']
+>>> kitchen_sink = [1 , 'a', True]
+>>> kitchen_sink
+[1, 'a', True]
+```
+---
+
+# Accessing items in a list
+
+```python
+>>> companies[1]
+'re:3D'
+>>> companies[-1]
+'Hacker You'
+>>> companies[10]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: list index out of range
+```
+
+---
+
+# Useful list functions
+
+- `len(list)` returns the length of the given list.
+- `range(stop)` or `range(start, stop, step)` returns a list that counts from
+  `start` up to *but not including* `end`, by `step`. By default `start` is
+  `0` and `step` is `1`.
+- `str.split()` gives you a list of words from a string, where words are
+  separated by spaces.
+
+```python
+>>> range(5)
+[0, 1, 2, 3, 4]
+>>> len(range(5))
+5
+>>> "Hello, my name is Inigio Montoya.".split()
+['Hello,', 'my', 'name', 'is', 'Inigio', 'Montoya.']
+```
+
+---
+
+# Exercise
+
+- Using a list and a while loop, print the days of the week
+- `break` the loop on Wednesday
+
+---
+
+# Modifying a List
+
+```python
+>>> l = [1, 2, 3]
+>>> # Add an item
+>>> l.append(5)
+>>> l
+[1, 2, 3, 5]
+>>> # Remove an item
+>>> l.remove(3)
+>>> l
+[1, 2, 5]
+>>> # remove throws an error if the item doesn't exist
+>>> l.remove(9)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ValueError: list.remove(x): x not in list
+```
+
+
+
+---
+template: inverse
+
+# Lesson 12: For loops
+
+---
+
+```python
+# for loops make it easy to loop over a list
+for company in companies:
+    print company
+
+# they're also useful for looping
+# a known number of times
+for i in range(1, 10):
+  print i
+```
+
+---
+
+# Exercise
+
+- Use a for loop to print the days of the week
+- Use a for loop to count from 10 to 1
+   - Hint: by default range() increases by 1 each time, but you can give it a
+     third argument to tell it the number to increment by each time
+   - e.g., `range(0, 10, 2)`
+
+
+---
+
+# Programming challenge!
+
+
+- Let's make a hangman game using what we learned.
+- Hangman credit to Python Programming for the Absolute Beginner
+- But before you start coding away, it helps to think about what you're trying
+  to do.
+- Remember, computers need specific instructions, so you need to break it
+  down.
+- You can start by playing hangman on paper with each other.
+- Start with [`hangman_draft.py`](./hangman_draft.py). Replace `<CODE HERE>`
+  with the appropriate code!
+
+
+???
+
+```markdown
+
+---
+template: inverse
+
+# Lesson 13: Writing functions
+
+
+---
+template: inverse
+
+# Lesson 14: Dictionaries
+```
+
+---
+
+class: center, middle
 
 .dibideedibideedibidee[
 That's all, folks!
