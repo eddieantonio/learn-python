@@ -21,9 +21,10 @@ class: center, middle, inverse
 
 .footnote.attribution[
 
-Largely ripped off from [Ladies Learning Code Python][LLC] by Peter Newhook
+Largely based on [Ladies Learning Code Python][LLC] by [Peter Newhook][]
 
 [LLC]: https://github.com/ladieslearningcode/Python
+[Peter Newhook]: http://peternewhook.com/
 
 .license-text[
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img
@@ -44,7 +45,8 @@ is licensed under a <a rel="license"
 ---
 layout: false
 
-- Download and install [Python 2.7][python]
+- Download and install [Python 2.7][python].
+  * Windows users: remember to check "add Python to PATH" during the install!
 - Get a text editor
   * [TextWrangler][] (Mac OS X)
   * [Notepad++][] (Windows)
@@ -83,7 +85,7 @@ The `$` is a shorthand for your **prompt**. This means that the *shell*
 (command line) is ready to interpret a command. **Do not type this out!**
 
 ```sh
-$ cd Documents/Python
+$ cd Programming
 ```
 
 ```sh
@@ -129,7 +131,7 @@ We're going to write the most basic program, just to get our feet wet.
 - What happened?
 --
 
-- Use single quotes
+- Use single quotes.
 --
 
 - Make it say `Hello, "World"!`
@@ -220,8 +222,7 @@ template: inverse
 Python can do different things with different values. But before it knows how
 to do something (say, add two values), it needs to know what kind of values
 they are, and what are valid operations between them. These are what types
-are. A category for each kind of value.  There are two different kinds of
-numbers:
+are. There are two different kinds of numbers:
 
 - `int` — integers with as many digits as your memory can handle
   ```python
@@ -248,7 +249,7 @@ numbers:
 42
 ```
 
-- This is a `float`.
+- This is a `float`:
 
 ```python
 42.0
@@ -258,8 +259,6 @@ numbers:
 --
 
 - to convert an int to a float, type `float(the_int_you_want_to_convert)`.
---
-
 
 ```python
 >>> float(42)
@@ -295,7 +294,7 @@ operate on.
 
 ---
 
-**But types don't stop at just numbers.**
+**But types don't stop at just numbers!**
 
 
 
@@ -327,8 +326,10 @@ double quotes.
 >>> 'or I can use single quotes'
 'or I can use single quotes'
 >>> 'but I cannot use both"
+  File "<stdin>", line 1
+    "but I cannot use both'
+                          ^
 SyntaxError: EOL while scanning string literal
-
 ```
 
 --
@@ -343,8 +344,8 @@ Both notations mean the **same thing**.
 ```python
 >>> "I'll see you at " + 2
 Traceback (most recent call last):
-File "<stdin>", line 1, in <module> TypeError: cannot concatenate 'str' and
-'int' objects
+  File "<stdin>", line 1, in <module>
+TypeError: cannot concatenate 'str' and 'int' objects
 ```
 
 --
@@ -418,7 +419,7 @@ template: inverse
 --
 
 - You've already used some functions: `int()`, `float()`, `str()`,
-  `type()`.sup[\*].
+  `type()`<sup class="asterisk">\*</sup>.
 --
  `print` is not a function (in Python 2, at least)...
 --
@@ -458,7 +459,7 @@ amount; some take none at all.
 --
 
 - `help(value)` gives you interactive help for any 'ol thing you wish to ask
-  for.
+  for. Press <kbd>space</kbd> to scroll down, and <kbd>q</kbd> to quit!
 --
  To ask for help for a function, **omit the parentheses!**
 
@@ -470,8 +471,8 @@ TypeError: abs() takes exactly one argument (0 given)
 ```
 --
 
-- A lot of the other built-ins are a bit too esoteric for an intro to programming
-  though... :/
+- A lot of the other built-ins are a bit too esoteric for an intro to
+  programming though... :/
 
 
 ---
@@ -540,6 +541,10 @@ TypeError: abs() takes exactly one argument (0 given)
 # Methods
 
 - Sometimes, functions belong to values.
+--
+ Use the `.` to call them.
+--
+
 - These functions are called **methods**.
 --
  They typically act on the value they belong to.
@@ -640,7 +645,7 @@ Though the term in computer science in general is just "variable".
 This is where Python stops resembling math. `=` does not mean what it means in
 math. At all.
 --
-- Names can't begin with a number or have a space in them.  Use an underscore
+- Names can't begin with a number or have spaces in them. Use an underscore
   when you want to use a space.
 
 
@@ -684,22 +689,6 @@ Aw geez. It's still the same!
 >>> party_budget = party_budget + venture_capitalist_investment
 >>> party_budget
 101000
-```
-
----
-
-# The guestlist
-
-```python
->>> guestlist = "Peter June Shreek"
->>> guestlist_copy = guestlist
->>> guestlist_copy
-'Peter June Shreek'
->>> guestlist = guestlist + " Roberto"
->>> guestlist
-'Peter June Shreek Roberto'
->>> guestlist_copy
-'Peter June Shreek'
 ```
 
 ---
@@ -818,7 +807,7 @@ print 'Hello World' # so is this
 ```
 
 --
-- Allows you to write sweet love letters to your maintenance programmer
+- Allows you to write sweet love letters to your maintenance programmer.
 
 --
 - And explain what was going on in your head when you were writing the dang
@@ -838,23 +827,23 @@ print 'Hello World' # so is this
 
 ```python
 # raw input prompts the user
-raw_input("Please enter your name:\n")
+raw_input("Please enter your name: ")
 # store the result in a variable
-my_name = raw_input("Please enter your name:\n")
+my_name = raw_input("Please enter your name: ")
 # store the result in a variable
-my_age = int(raw_input("How old are you?\n"))
+my_age = int(raw_input("How old are you? "))
 ```
 
 ---
 
 # A ticket app
 
-- We’re going to write a ticket app for Peter’s Python Prognostications
-- Here’s how it’s work
-  1. We start with 8 tickets
-  2. We ask the user how many they want
-  3. We print out that number
-  4. We show the user how many tickets are left
+- We’re going to write a ticket app for Peter’s Python Prognostications.
+- Here’s how it’s work:
+  1. We start with 8 tickets.
+  2. We ask the user how many they want.
+  3. We print out that number.
+  4. We show the user how many tickets are left.
 
 
 
@@ -867,21 +856,21 @@ template: inverse
 
 # Control flow
 
-- Most programs don’t run line by line from start to end
-- They jump around according to rules
-- One way to specify those rules is to use conditions
+- Most programs don’t run line by line from start to end.
+- They jump around according to rules.
+- One way to specify those rules is to use conditions.
 
 ---
 
 # Boolean logic
 
-- All about yes or no questions
-- We frequently want to test if two values are equal
-- For equality we use the **double equal** sign
+- In other words, yes or no questions.
+- We frequently want to test if two values are equal.
+- For equality we use the **double equal** sign:
   - `1 == 1`
-- We can test if two things aren’t equal with `!=`
+- We can test if two things aren’t equal with `!=`:
   - `1 != 2`
-- There are also many of the math operators we know
+- There are also many of the math operators we know:
   - Greater than: `>`
   - Greater than or equal to: `>=`
   - Less than: `<`
@@ -919,10 +908,10 @@ if 1 == 1:
 ```python
 # so beautiful
 if True:
-    print "wir sind die Roboter"
+    print "Wir sind die Roboter"
 # NOPE!
 if True:
-print "ya tvoy robotnik"
+print "Ya tvoi rabotnik"
 ```
 
 ---
@@ -957,9 +946,10 @@ else:
 
 # Exercises
 
-- Stop the user from buying tickets if they ask for more than are available
+- Stop the user from buying tickets if they ask for more than are available.
 - Write a program that asks you what your favourite colour is and tells you
-  something else that is the same colour.
+  something else that is the same colour. Make sure you do something
+  meaningful if the user types an unknown colour!
 
         What is your favourite colour? Green
         I like turtles
@@ -977,9 +967,9 @@ template: inverse
 
 # Getting loopy
 
-- So far our code has run from top to bottom
-- Programs usually need to do something over and over again
-- Computers are literally made to do menial, repetitive tasks
+- So far our code has run from top to bottom.
+- Programs usually need to do something over and over again.
+- Computers are literally made to do menial, repetitive tasks.
 
 ---
 
@@ -1020,7 +1010,7 @@ print 'Done the loop'
 
 ---
 
-# break dancing
+# `break` dancing
 
 ```python
 # or we can use the break keyword
@@ -1038,7 +1028,7 @@ statement.
 
 ---
 
-# To run a certain number of times we test a variable and increment within the loop
+# To loop a given number of times we test a variable and increment it
 
 ```python
 x=1
@@ -1063,18 +1053,18 @@ while x > 0:
 
 # Exercise
 
-- We’re going to write a game for the computer
-- The computer will pick a number and we have to guess it
+- We’re going to write a game for the computer.
+- The computer will pick a number and we have to guess it.
 
 ```python
 import random
 x = random.randint(1, 10)
 ```
 
-- The user should know if they are too high or too low
-- We know how to ask for input
-- We know how to compare guesses
-- We want to give the user multiple chances (maybe 3?)
+- The user should know if they are too high or too low.
+- We know how to ask for input.
+- We know how to compare guesses.
+- We want to give the user multiple chances (maybe 3?).
 
 
 
@@ -1087,11 +1077,10 @@ template: inverse
 
 # Lists
 
-- Lists are lists
-- That was useless
+- Lists are lists!
 - But seriously, they’re just an **ordered collection of values**.
-- Lists can hold strings, integers, floats, booleans, and anything else you
-can create
+- Lists can hold strings, integers, floats, booleans, and any other value you
+  can think of.
 
 ---
 
@@ -1147,8 +1136,8 @@ IndexError: list index out of range
 
 # Exercise
 
-- Using a list and a while loop, print the days of the week
-- `break` the loop on Wednesday
+- Using a list and a while loop, print the days of the week.
+- `break` the loop on Wednesday.
 
 ---
 
@@ -1180,6 +1169,8 @@ template: inverse
 
 ---
 
+# `for` loops for looping!
+
 ```python
 # for loops make it easy to loop over a list
 for company in companies:
@@ -1195,10 +1186,10 @@ for i in range(1, 10):
 
 # Exercise
 
-- Use a for loop to print the days of the week
-- Use a for loop to count from 10 to 1
-   - Hint: by default range() increases by 1 each time, but you can give it a
-     third argument to tell it the number to increment by each time
+- Use a `for` loop to print the days of the week.
+- Use a `for` loop to count from 10 to 1
+   - Hint: by default `range()` increases by 1 each time, but you can give it
+     a third argument to tell it the number to increment by each time.
    - e.g., `range(0, 10, 2)`
 
 

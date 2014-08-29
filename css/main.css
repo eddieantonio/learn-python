@@ -113,8 +113,9 @@ code {
   padding-top: 1em;
 }
 
-/* My additions. */
+
 
+/* My additions. */
 
 .attribution {
   font-size: x-small;
@@ -137,12 +138,13 @@ code {
   transform: rotate(-17deg);
   left: -1%;
   text-align: center;
-  /*text-shadow: 5px 5px #ecc;*/
-  text-shadow: 1pt 1pt rgba(255,255,255,0.2);
-  color: pink;
-  /*  fallback rainbow image */
+  text-shadow: 1pt 1pt rgba(255,255,255,0.35);
 
-  /*mozilla rainbow gradient*/
+  color: white;
+  /* Fallback color. */
+  background-color: pink;
+
+  /* mozilla rainbow gradient*/
   background-image: -moz-linear-gradient( left top, right bottom ,
   from(red),
   color-stop(16%, orange),
@@ -152,7 +154,7 @@ code {
   color-stop(76%, indigo),
   to(violet));
 
-  /*webkit rainbow gradient*/
+  /* webkit rainbow gradient*/
   background-image: -webkit-gradient(linear,  left top,  left bottom,
   color-stop(0.00, red),
   color-stop(16%, orange),
@@ -164,10 +166,7 @@ code {
 
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
 }
-
-
 
 .dibideedibideedibidee {
   text-align: center;
@@ -176,4 +175,10 @@ code {
   font-weight: bolder;
   font-size: 144pt;
   transform: rotate(-7deg);
+}
+
+sup.asterisk {
+  color: #666;
+  vertical-align: super;
+  font-size: smaller;
 }
